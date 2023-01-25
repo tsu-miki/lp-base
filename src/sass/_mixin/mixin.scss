@@ -1,0 +1,60 @@
+@use "responsive" as res;
+
+// このファイルには、_mixin の記述を行う
+
+/**
+ * レスポンシブ指定する際に用いる _mixin
+ *
+ * h1 {
+ *   color: red; // 共通のスタイル
+ *
+ *   @include mq(pc) { // この中が pc 版でのみ適用されるスタイル
+ *      color: blue;
+ *   }
+ *
+ *   @include mq(sp) { // この中が sp 版でのみ適用されるスタイル
+ *      color: yellow;
+ *   }
+ * }
+ *
+ * のように指定して使う
+ */
+
+@mixin mq($breakpoint: sp) {
+  @media #{map-get(res.$breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin fontSize($pcSize, $spSize) {
+  @include mq(pc) {
+    font-size: $pcSize;
+  }
+  @include mq(sp) {
+    font-size: $spSize;
+  }
+}
+
+@mixin setWidth($pcSize, $spSize) {
+  @include mq(pc) {
+    width: $pcSize;
+  }
+  @include mq(sp) {
+    width: $spSize;
+  }
+}
+
+@mixin setHeight($pcSize, $spSize) {
+  @include mq(pc) {
+    height: $pcSize;
+  }
+  @include mq(sp) {
+    height: $spSize;
+  }
+}
+
+@mixin safari {
+  @at-root _::-webkit-full-page-media, _:future, :root & {
+    @content;
+  }
+}

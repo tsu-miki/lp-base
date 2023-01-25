@@ -1,0 +1,10 @@
+$pcBaseWidth: 1060px; // pc の基準となる横幅
+$pcMaxWidth: $pcBaseWidth; // pc の最大幅
+
+$breakpoint: 767; // pc と sp のレスポンシブ を切り替える横幅のブレークポイント(px)
+
+// ブレークポイントの一覧
+$breakpoints: (
+        'sp': 'screen and (max-width: #{$breakpoint}px)',
+        'pc': 'screen and (min-width: #{$breakpoint + 1}px)',
+);
